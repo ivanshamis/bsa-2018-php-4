@@ -16,6 +16,8 @@ class Game
         $writer->write("Type your name:");
         $input = trim($reader->read());
         $writer->writeln("Good luck with this task, {$input}!");
+        $input = trim($reader->read());
+        $writer->writeln("Good luck with this task, {$input}!");
     }
 
     public function run(Reader $reader, Writer $writer): void
