@@ -13,7 +13,7 @@ class Game
         // Feel free to delete these lines
         $writer->writeln("You can't play yet. Please read input and convert it to commands.");
         $writer->writeln("Don't forget to create game's world.");
-        $writer->write("Type your name:");
+        $writer->write("Type your name: ");
         $input = trim($reader->read());
         $writer->writeln("Good luck with this task, {$input}!");
         $input = trim($reader->read());
