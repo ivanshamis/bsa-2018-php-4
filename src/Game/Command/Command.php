@@ -2,17 +2,9 @@
 
 namespace BinaryStudioAcademy\Game\Command;
 
-class help implements CommandInterface
+use BinaryStudioAcademy\Game\Contracts\Command\CommandInterface;
+
+abstract class Command implements CommandInterface
 {
-    private $output;
-
-    public function __construct(Receiver $output)
-    {
-        $this->output = $output;
-    }
-
-    public function execute()
-    {
-        $this->output->help();
-    }
+    abstract public function execute();
 }

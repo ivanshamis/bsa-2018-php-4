@@ -4,32 +4,54 @@ namespace BinaryStudioAcademy\Game;
 
 use BinaryStudioAcademy\Game\Contracts\Io\Reader;
 use BinaryStudioAcademy\Game\Contracts\Io\Writer;
-
-//use BinaryStudioAcademy\Game\Contracts\Command\CommandInterface;
-use BinaryStudioAcademy\Game\Command;
+use BinaryStudioAcademy\Game\Command\Receiver;
+use BinaryStudioAcademy\Game\SpaceshipFactory;
 
 class Game
 {
+    public function executeCommand(SpaceshipFactory $spaceship, string $input): string
+    {
+        $commandDir = "BinaryStudioAcademy\Game\Command\\";
+        if (strpos($input,':')) 
+            {
+                $param = substr($input,strpos($input,':')+1);
+                $action = substr($input,0,strpos($input,':'));
+            }
+        else 
+            {
+                $param = '';
+                $action = $input;
+            }
+        $commandName = "{$commandDir}{$action}Command";
+        $output = "There is no command {$action}";
+
+        if (class_exists ($commandName)) {
+            if (get_parent_class($commandName)=="{$commandDir}Command") {
+                $command = new $commandName ( new Receiver (), $spaceship, $param);
+                $output = $command->execute();
+            }
+        }
+        return $output;
+    }
+
     public function start(Reader $reader, Writer $writer): void
     {
-        // TODO: Implement infinite loop and process user's input
-        // Feel free to delete these lines
-        //$writer->writeln("You can't play yet! Please read input and convert it to commands.");
-        //$writer->writeln("Don't forget to create game's world.");
-        //$writer->write("Type your name: ");
-        //$input = trim($reader->read());
-        //$writer->writeln("Good luck with this task, {$input}!");
-        
-        $writer->write("Type your command: ");
-        $input = trim($reader->read());
-
-        $command = new $input ( new Receiver () );
+        $spaceship = SpaceshipFactory::getInstance();
+        $input = '';
+        while (($input!='exit') and (!$spaceship->is_ready())) 
+        {
+            $writer->write("Type your command: ");
+            $input = trim($reader->read());
+            $output = $this->executeCommand($spaceship,$input);    
+            $writer->writeln($output);
+        }
     }
 
     public function run(Reader $reader, Writer $writer): void
     {
-        // TODO: Implement step by step mode with game state persistence between steps
-        $writer->writeln("You can't play yet. Please read input and convert it to commands.");
-        $writer->writeln("Don't forget to create game's world.");
+        $spaceship = SpaceshipFactory::getInstance();
+        $input = trim($reader->read());
+        $output = $this->executeCommand($spaceship,$input);    
+        $writer->writeln($output);
     }
 }
