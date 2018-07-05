@@ -12,25 +12,24 @@ class Game
     public function executeCommand(SpaceshipFactory $spaceship, string $input): string
     {
         $commandDir = "BinaryStudioAcademy\Game\Command\\";
+        $param = '';
+        $action = $input;
         if (strpos($input,':')) 
             {
                 $param = substr($input,strpos($input,':')+1);
                 $action = substr($input,0,strpos($input,':'));
             }
-        else 
-            {
-                $param = '';
-                $action = $input;
-            }
         $commandName = "{$commandDir}{$action}Command";
         $output = "There is no command {$action}";
 
-        if (class_exists ($commandName)) {
-            if (get_parent_class($commandName)=="{$commandDir}Command") {
-                $command = new $commandName ( new Receiver (), $spaceship, $param);
-                $output = $command->execute();
+        if (class_exists($commandName)) 
+            {
+            $parent = get_parent_class($commandName);
+            if (($parent=="{$commandDir}Command") or (($parent=="{$commandDir}CommandShip"))) 
+                { 
+                    $output = (new $commandName(new Receiver(), $spaceship, $param))->execute(); 
+                }
             }
-        }
         return $output;
     }
 

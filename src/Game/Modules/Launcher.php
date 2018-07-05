@@ -2,8 +2,6 @@
 
 namespace BinaryStudioAcademy\Game\Modules;
 
-use BinaryStudioAcademy\Game\Modules\Module;
-
 class Launcher extends Module
 {
     protected $name = 'Launcher';

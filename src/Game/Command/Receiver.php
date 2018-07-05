@@ -17,7 +17,7 @@ class Receiver
     }
 
     public function mine(SpaceshipFactory $spaceship, $element) {
-        $produce = 'No such resource.';
+        $produce = $spaceship::NO_SUCH_RESOURCE;
         if (isset($spaceship->getMineElements()[$element])) 
         {
             $produce = $spaceship->mine($spaceship->getMineElements()[$element]);
@@ -26,7 +26,7 @@ class Receiver
     }
 
     public function produce(SpaceshipFactory $spaceship, $element) {
-        $produce = 'There is no such element to produce.';
+        $produce = $spaceship::NO_SUCH_RESOURCE;
         if (isset($spaceship->getProduceElements()[$element])) 
         {
             $produce = $spaceship->produce($spaceship->getProduceElements()[$element]);
@@ -35,7 +35,7 @@ class Receiver
     }
 
     public function build(SpaceshipFactory $spaceship, $module) {
-        $build = 'There is no such spaceship module.';
+        $build = $spaceship::THERE_IS_NO_MODULE;
         if (isset($spaceship->getModules()[$module])) 
         {
             $build = $spaceship->produce($spaceship->getModules()[$module]);
@@ -44,7 +44,7 @@ class Receiver
     }
 
     public function scheme(SpaceshipFactory $spaceship, $module) {
-        $scheme = 'There is no such spaceship module.';
+        $scheme = $spaceship::THERE_IS_NO_MODULE;
         if (isset($spaceship->getModules()[$module])) 
         {
             $scheme_module = $spaceship->getModules()[$module];

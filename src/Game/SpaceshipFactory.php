@@ -11,6 +11,9 @@ final class SpaceshipFactory
     private static $elements;
     private static $modules;
 
+    public const THERE_IS_NO_MODULE = 'There is no such spaceship module.';
+    public const NO_SUCH_RESOURCE = 'No such resource.';
+
     public static function getInstance(): SpaceshipFactory
     {
         if (null === static::$instance) 
