@@ -61,7 +61,7 @@ final class SpaceshipFactory
         return $produceElements;
     }
 
-    public function produce($element)
+    public function produce(Element $element)
     {
         $need_elements = $element->getNeeds();
         $need_note = '';
@@ -76,7 +76,7 @@ final class SpaceshipFactory
             {
                 $you_need = 'You need to mine';
                 $added = 'added to inventory.';
-                $check_modules = true; 
+                $check_modules = false; 
             }
 
         foreach ($need_elements as $need) 

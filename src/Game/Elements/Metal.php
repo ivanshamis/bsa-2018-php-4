@@ -4,12 +4,9 @@ namespace BinaryStudioAcademy\Game\Elements;
 
 use BinaryStudioAcademy\Game\Elements\Element;
 
-class Metal extends Element
+final class Metal extends Element
 {
-    public function __construct()
-    {
-        $this->name = 'Metal'; 
-        $this->needs = ['iron','fire'];
-        $this->type = 'produce element';
-    }
+    protected $name = 'Metal';
+    protected $type = 'produce element';
+    protected $needs = ['iron','fire'];
 }

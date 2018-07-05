@@ -2,8 +2,17 @@
 
 namespace BinaryStudioAcademy\Game\Elements;
 
-class Element extends AbstractElement
+abstract class Element
 {
+    protected $name;
+    protected $needs = [];
+    protected $count = 0;
+    protected $type = 'mine element';
+
+    public function __construct()
+    {
+    }
+
     public function getName()
     {
         return $this->name;

@@ -2,37 +2,18 @@
 
 namespace BinaryStudioAcademy\Game\Modules;
 
-use BinaryStudioAcademy\Game\Modules\AbstractModule;
+use BinaryStudioAcademy\Game\Elements\Element;
 
-class Module extends AbstractModule
+abstract class Module extends Element
 {
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
+    protected $type = 'module';
 
     public function getScheme()
     {
         return implode('|',$this->needs);
     }
 
-    public function getNeeds()
+    public function use()
     {
-        return $this->needs;
-    }
-
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-    public function add()
-    {
-        $this->count++;
     }
 }

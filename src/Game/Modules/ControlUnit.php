@@ -6,9 +6,6 @@ use BinaryStudioAcademy\Game\Modules\Module;
 
 class ControlUnit extends Module
 {
-    public function __construct()
-    {
-        $this->name = 'Control_unit'; 
-        $this->needs = ['ic','wires'];
-    }
+    protected $name = 'Control_unit';
+    protected $needs = ['ic','wires'];
 }

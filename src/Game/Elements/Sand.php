@@ -4,10 +4,7 @@ namespace BinaryStudioAcademy\Game\Elements;
 
 use BinaryStudioAcademy\Game\Elements\Element;
 
-class Sand extends Element
+final class Sand extends Element
 {
-    public function __construct()
-    {
-        $this->name = 'Sand';
-    }
+    protected $name = 'Sand';
 }
